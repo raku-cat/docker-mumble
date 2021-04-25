@@ -1,5 +1,4 @@
 FROM alpine:3.13.4
-LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 # Define Mumble version
 ARG MUMBLE_VERSION=1.3.4
@@ -12,9 +11,6 @@ RUN mkdir -pv /opt/mumble /etc/mumble
 
 # Create non-root user
 RUN adduser -DHs /sbin/nologin mumble
-
-# Copy config file
-COPY files/config.ini /etc/mumble/config.ini
 
 # Copy run script
 COPY files/run.sh /opt/mumble/run.sh
@@ -35,11 +31,9 @@ RUN apk add --update ca-certificates bzip2 su-exec tar tzdata wget \
 # Expose ports
 EXPOSE 64738 64738/udp
 
-# Set running user
-USER mumble
-
 # Set volumes
 VOLUME /etc/mumble
+VOLUME /etc/letsencrypt
 
 # Default command
 CMD ["/opt/mumble/run.sh"]

@@ -1,0 +1,66 @@
+# Generation of Kubernetes YAML is still under development!
+#
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-3.0.1
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-04-25T03:25:13Z"
+  labels:
+    app: mumble-server
+  name: mumble-server
+spec:
+  containers:
+  - command:
+    - /opt/mumble/run.sh
+    env:
+    - name: PATH
+      value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: podman
+    - name: CONFIG_PATH
+      value: /etc/mumble/config.ini
+    image: mumble:1.3.4
+    name: murmur
+    ports:
+    - containerPort: 64738
+      hostPort: 64738
+      protocol: TCP
+    - containerPort: 64738
+      hostPort: 64738
+      protocol: UDP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - mountPath: /etc/mumble
+      name: srv-mumble
+    - mountPath: /etc/letsencrypt
+      name: etc-letsencrypt
+      readOnly: true
+    workingDir: /
+  dnsConfig: {}
+  restartPolicy: Never
+  volumes:
+  - hostPath:
+      path: /srv/mumble
+      type: Directory
+    name: srv-mumble
+  - hostPath:
+      path: /etc/letsencrypt
+      type: Directory
+    name: etc-letsencrypt
+status: {}
+

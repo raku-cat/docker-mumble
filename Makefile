@@ -1,8 +1,8 @@
-IMAGE_NAME="phlak/mumble"
+IMAGE_NAME="raku_cat/mumble"
 IMAGE_TAG="$$(grep 'ARG MUMBLE_VERSION' Dockerfile | awk -F = '{print $$2}')"
 
 build:
-	@docker build --force-rm --pull --tag $(IMAGE_NAME):$(IMAGE_TAG) .
+	@podman build --force-rm --pull --tag $(IMAGE_NAME):$(IMAGE_TAG) .
 
 purge:
-	@docker image rm --force $(IMAGE_NAME):$(IMAGE_TAG)
+	@podman image rm --force $(IMAGE_NAME):$(IMAGE_TAG)
