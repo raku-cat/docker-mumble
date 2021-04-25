@@ -8,7 +8,7 @@ Deviations
 - Switched makefile to use podman (i'm using podman)
 - Included kube yaml file to deploy the whole thing at once in a podman pod
 - Uses bind mount to /srv for /etc/mumble, i'm pretty sure you just need to drop the config.ini there yourself
-- ¯\\_(ツ)_/¯
+- ¯\\\_(ツ)\_/¯
 
 <p align="center">
     <img src="docker-mumble.png" alt="Docker Mumble" width="500">
