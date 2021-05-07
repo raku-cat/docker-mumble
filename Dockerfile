@@ -1,4 +1,5 @@
 FROM alpine:3.13.5
+LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 # Define Mumble version
 ARG MUMBLE_VERSION=1.3.4
