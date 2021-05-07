@@ -1,4 +1,4 @@
-IMAGE_NAME="raku_cat/mumble"
+IMAGE_NAME="raku-cat/mumble"
 IMAGE_TAG="$$(grep 'ARG MUMBLE_VERSION' Dockerfile | awk -F = '{print $$2}')"
 
 build:
