@@ -1,4 +1,4 @@
-FROM alpine:3.13.4
+FROM alpine:3.13.5
 
 # Define Mumble version
 ARG MUMBLE_VERSION=1.3.4
@@ -11,6 +11,9 @@ RUN mkdir -pv /opt/mumble /etc/mumble
 
 # Create non-root user
 RUN adduser -DHs /sbin/nologin mumble
+
+# Copy config file
+COPY files/config.ini /etc/mumble/config.ini
 
 # Copy run script
 COPY files/run.sh /opt/mumble/run.sh
